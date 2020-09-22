@@ -93,8 +93,8 @@ function getStarshipPassengerAndCrewSumTotal(character) {
     let passengers = character.starships.reduce((acc, data) => {
         return acc + data.passengers;
     }, 0);
-    let result = crew + passengers;
-    return result;
+    let result1 = crew + passengers;
+    return result1;
 }
 
 /**
