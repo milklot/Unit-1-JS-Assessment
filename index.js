@@ -13,10 +13,10 @@
  * Must return input object's `name` property.
  *
  * Sample data expected output: `Luke Skywalker`
-*/
+ */
 function getName(character) {
-  // ⭐️ Example Solution Provided For First Function ⭐️
-  return character.name
+    // ⭐️ Example Solution Provided For First Function ⭐️
+    return character.name
 }
 
 /**
@@ -29,8 +29,7 @@ function getName(character) {
  * Sample data expected output: 5
  */
 function getFilmCount(character) {
-  // TODO: Add your code inside the functions (others below).
-
+    return character['films'].length;
 }
 
 /**
@@ -40,9 +39,13 @@ function getFilmCount(character) {
  * @instructions
  * Return second starship's name from `starships` property.
  * If length is 0. Return 'none'
-*/
+ */
 function getSecondStarshipName(character) {
-  // TODO: Add your code here.
+    if (character['starships'].length != 0) {
+        return character['starships'][1].name;
+    } else {
+        return 'none';
+    }
 }
 
 /**
@@ -55,7 +58,7 @@ function getSecondStarshipName(character) {
  *    Result: `Luke Skywalker, 172cm, 77kg. Featured in 5 films.`
  */
 function getSummary(character) {
-  // TODO: Add your code here.
+    return `${character.name}, ${character.height}cm, ${character.mass}kg. Featured in ${character['films'].length} films.`
 }
 
 /**
@@ -65,9 +68,12 @@ function getSummary(character) {
  * @instructions
  * Sum the total cost in credits for all vehicles defined on the input character.
  * Sample data expected output: 8000
-*/
+ */
 function getVehiclesCostInCreditsSumTotal(character) {
-  // TODO: Add your code here.
+    let result = character.vehicles.reduce((acc, data) => {
+        return acc + data["cost_in_credits"];
+    }, 0);
+    return result;
 }
 
 /**
@@ -79,9 +85,16 @@ function getVehiclesCostInCreditsSumTotal(character) {
  * input character.
  *
  * Sample data expected output: 27
-*/
+ */
 function getStarshipPassengerAndCrewSumTotal(character) {
-  // TODO: Add your code here.
+    let crew = character.starships.reduce((acc, data) => {
+        return acc + data.crew;
+    }, 0);
+    let passengers = character.starships.reduce((acc, data) => {
+        return acc + data.passengers;
+    }, 0);
+    let result = crew + passengers;
+    return result;
 }
 
 /**
@@ -96,13 +109,18 @@ function getStarshipPassengerAndCrewSumTotal(character) {
  *
  * Given film #1, expected output: `A New Hope`
  * Given film #7, expected error: `There are only 3 Star Wars movies. Flan fiction excluded.`
-*/
+ */
 function getNthFilm(character, filmNumber) {
-  // TODO: Add your code here.
+    if (filmNumber >= 1 && filmNumber <= 3) {
+        return character.films[filmNumber - 1];
+    } else {
+        return `There are only 3 Star Wars movies.Flan fiction excluded.`;
+    }
 }
 
 /**
- * ### Challenge `getCargoCapacityTotal`
+ * ### Challenge `
+        getCargoCapacityTotal `
  * Stretch Goal 💪
  * 
  * @instructions
@@ -110,13 +128,23 @@ function getNthFilm(character, filmNumber) {
  * Some objects may not have a value for their cargo capacity.
  *
  * Sample data expected output: 80124
-*/
+ */
 function getCargoCapacityTotal(character) {
-  // TODO: Add your code here.
+
+    let cargoVehicle = character.starships.reduce((acc, data) => {
+        return acc + data.cargo_capacity;
+    }, 0);
+    let cargoStarships = character.vehicles.reduce((acc, data) => {
+        return acc + data.cargo_capacity;
+    }, 0);
+    let result = cargoStarships + cargoVehicle;
+    return result;
+
 }
 
 /**
- * ### Challenge `getFastestStarshipName`
+ * ### Challenge `
+        getFastestStarshipName `
  * Stretch Goal 💪
  * 
  * @instructions
@@ -124,14 +152,16 @@ function getCargoCapacityTotal(character) {
  * Determine the correct field to compare, and return the name of the fastest.
  * If the character does not have any starships, then return 'none'.
  *
- * Sample data expected output: `X-wing`
-*/
+ * Sample data expected output: `
+        X - wing `
+ */
 function getFastestStarshipName(character) {
-  // TODO: Add your code here.
+    let arrOfSpeed = character.forEach()
 }
 
 /**
- * ### Challenge `getLargestCargoStarshipModelName`
+ * ### Challenge `
+        getLargestCargoStarshipModelName `
  * Stretch Goal 💪
  * 
  * @instructions
@@ -139,24 +169,27 @@ function getFastestStarshipName(character) {
  * Return it's **_model_** property.
  * If the character does not have any starships, then return 'none'.
  *
- * Sample data expected output: `Lambda-class T-4a shuttle`
-*/
+ * Sample data expected output: `
+        Lambda - class T - 4 a shuttle `
+ */
 function getLargestCargoStarshipModelName(character) {
-  // TODO: Add your code here.
+    // TODO: Add your code here.
 }
 
 /**
- * ### Challenge `getSlowestVehicleOrStarshipName`
+ * ### Challenge `
+        getSlowestVehicleOrStarshipName `
  *Stretch Goal 💪
  *
  * @instructions
  * Find the slowest transport (including vehicles and starships)
- * based on `max_atmosphering_speed`, and return its name.
+ * based on `
+        max_atmosphering_speed `, and return its name.
  * If the character does not have any starships or vehicles, then return string 'none'.
  *
-*/
+ */
 function getSlowestVehicleOrStarshipName(character) {
-  // TODO: Add your code here.
+    // TODO: Add your code here.
 }
 
 
@@ -168,18 +201,18 @@ function getSlowestVehicleOrStarshipName(character) {
 /// ////// END OF CHALLENGE /////////
 // DO NOT CHANGE ANYTHING BELOW THIS LINE //
 if (typeof exports !== 'undefined') {
-  // IGNORE: Test/Env Detected
-  // For Node/Non-browser test env
-  module.exports = module.exports || {}
-  if (getName) { module.exports.getName = getName }
-  if (getFilmCount) { module.exports.getFilmCount = getFilmCount }
-  if (getSecondStarshipName) { module.exports.getSecondStarshipName = getSecondStarshipName }
-  if (getSummary) { module.exports.getSummary = getSummary }
-  if (getVehiclesCostInCreditsSumTotal) { module.exports.getVehiclesCostInCreditsSumTotal = getVehiclesCostInCreditsSumTotal }
-  if (getStarshipPassengerAndCrewSumTotal) { module.exports.getStarshipPassengerAndCrewSumTotal = getStarshipPassengerAndCrewSumTotal }
-  if (getNthFilm) { module.exports.getNthFilm = getNthFilm }
-  if (getCargoCapacityTotal) { module.exports.getCargoCapacityTotal = getCargoCapacityTotal }
-  if (getFastestStarshipName) { module.exports.getFastestStarshipName = getFastestStarshipName }
-  if (getLargestCargoStarshipModelName) { module.exports.getLargestCargoStarshipModelName = getLargestCargoStarshipModelName }
-  if (getSlowestVehicleOrStarshipName) { module.exports.getSlowestVehicleOrStarshipName = getSlowestVehicleOrStarshipName }
+    // IGNORE: Test/Env Detected
+    // For Node/Non-browser test env
+    module.exports = module.exports || {}
+    if (getName) { module.exports.getName = getName }
+    if (getFilmCount) { module.exports.getFilmCount = getFilmCount }
+    if (getSecondStarshipName) { module.exports.getSecondStarshipName = getSecondStarshipName }
+    if (getSummary) { module.exports.getSummary = getSummary }
+    if (getVehiclesCostInCreditsSumTotal) { module.exports.getVehiclesCostInCreditsSumTotal = getVehiclesCostInCreditsSumTotal }
+    if (getStarshipPassengerAndCrewSumTotal) { module.exports.getStarshipPassengerAndCrewSumTotal = getStarshipPassengerAndCrewSumTotal }
+    if (getNthFilm) { module.exports.getNthFilm = getNthFilm }
+    if (getCargoCapacityTotal) { module.exports.getCargoCapacityTotal = getCargoCapacityTotal }
+    if (getFastestStarshipName) { module.exports.getFastestStarshipName = getFastestStarshipName }
+    if (getLargestCargoStarshipModelName) { module.exports.getLargestCargoStarshipModelName = getLargestCargoStarshipModelName }
+    if (getSlowestVehicleOrStarshipName) { module.exports.getSlowestVehicleOrStarshipName = getSlowestVehicleOrStarshipName }
 }
